@@ -18,20 +18,7 @@ int main(int argc, char **argv) {
 clang -S main.cpp -o a.s -mavx2 -mfma
 编译汇编如下
 
-    .text
-    .file   "main.cpp"
-    .globl  main
-    .align  16, 0x90
-    .type   main,@function
-main:                                   # @main
-    .cfi_startproc
 
-    pushq   %rbp
-.Ltmp0:
-    .cfi_def_cfa_offset 16
-.Ltmp1:
-    .cfi_offset %rbp, -16
-    movq    %rsp, %rbp
 .Ltmp2:
     .cfi_def_cfa_register %rbp
     movl    $0, -36(%rbp)
@@ -51,41 +38,10 @@ main:                                   # @main
     movl    -104(%rbp), %eax
     movl    %eax, -108(%rbp)        # 4-byte Spill
     jmp .LBB0_3
-.LBB0_2:
-    movl    $16, %eax
-    movl    %eax, -108(%rbp)        # 4-byte Spill
-    jmp .LBB0_3
-.LBB0_3:
-    movl    -108(%rbp), %eax        # 4-byte Reload
-    xorl    %ecx, %ecx
-    movl    %eax, -104(%rbp)
-    movl    %ecx, %eax
-    popq    %rbp
-    retq
-.Lfunc_end0:
-    .size   main, .Lfunc_end0-main
-    .cfi_endproc
-
-
-    .ident  "clang version 3.8.1-24 (tags/RELEASE_381/final)"
-    .section    ".note.GNU-stack","",@progbits
 
 clang -S main.cpp -o b.s -march=native
 编译汇编如下
-.text
-    .file   "main.cpp"
-    .globl  main
-    .align  16, 0x90
-    .type   main,@function
-main:                                   # @main
-    .cfi_startproc
 
-    pushq   %rbp
-.Ltmp0:
-    .cfi_def_cfa_offset 16
-.Ltmp1:
-    .cfi_offset %rbp, -16
-    movq    %rsp, %rbp
 .Ltmp2:
     .cfi_def_cfa_register %rbp
     movl    $0, -36(%rbp)
@@ -105,24 +61,7 @@ main:                                   # @main
     movl    -104(%rbp), %eax
     movl    %eax, -108(%rbp)        # 4-byte Spill
     jmp .LBB0_3
-.LBB0_2:
-    movl    $16, %eax
-    movl    %eax, -108(%rbp)        # 4-byte Spill
-    jmp .LBB0_3
-.LBB0_3:
-    movl    -108(%rbp), %eax        # 4-byte Reload
-    xorl    %ecx, %ecx
-    movl    %eax, -104(%rbp)
-    movl    %ecx, %eax
-    popq    %rbp
-    retq
-.Lfunc_end0:
-    .size   main, .Lfunc_end0-main
-    .cfi_endproc
 
-
-    .ident  "clang version 3.8.1-24 (tags/RELEASE_381/final)"
-    .section    ".note.GNU-stack","",@progbits
 
 
 jhlin@g20-common:~/vmovsstest$ clang main.cpp -mavx2 -mfma
