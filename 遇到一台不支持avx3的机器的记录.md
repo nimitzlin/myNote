@@ -67,6 +67,8 @@ clang -S main.cpp -o b.s -march=native
 jhlin@g20-common:~/vmovsstest$ clang main.cpp -mavx2 -mfma
 jhlin@g20-common:~/vmovsstest$ ./a.out
 Illegal instruction (core dumped)
+
+
 jhlin@g20-common:~/vmovsstest$ clang main.cpp -march=native
 jhlin@g20-common:~/vmovsstest$ ./a.out
 无错误
