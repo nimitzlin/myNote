@@ -25,7 +25,7 @@ clang -S main.cpp -o a.s -mavx2 -mfma
     .type   main,@function
 main:                                   # @main
     .cfi_startproc
-# BB#0:
+
     pushq   %rbp
 .Ltmp0:
     .cfi_def_cfa_offset 16
@@ -47,7 +47,7 @@ main:                                   # @main
     movl    $1, -100(%rbp)
     cmpl    $0, -100(%rbp)
     je  .LBB0_2
-# BB#1:
+
     movl    -104(%rbp), %eax
     movl    %eax, -108(%rbp)        # 4-byte Spill
     jmp .LBB0_3
@@ -79,7 +79,7 @@ clang -S main.cpp -o b.s -march=native
     .type   main,@function
 main:                                   # @main
     .cfi_startproc
-# BB#0:
+
     pushq   %rbp
 .Ltmp0:
     .cfi_def_cfa_offset 16
@@ -101,7 +101,7 @@ main:                                   # @main
     movl    $1, -100(%rbp)
     cmpl    $0, -100(%rbp)
     je  .LBB0_2
-# BB#1:
+
     movl    -104(%rbp), %eax
     movl    %eax, -108(%rbp)        # 4-byte Spill
     jmp .LBB0_3
